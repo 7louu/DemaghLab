@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
     courses: [{type: mongoose.Schema.Types.ObjectId, ref: 'Course'}],
-    role: {type: String, enum: ['regular','instructor','admin']},
+    role: {type: String, enum: ['regular','instructor','admin'], default: 'student',},
 });
 
 module.exports = mongoose.model('User',userSchema);
