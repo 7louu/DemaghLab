@@ -18,4 +18,4 @@ const connectDb = async() =>{
     }
 };
 //kol file fi JS is treated like a module kima l Python so we export it so other files fl project can use it!
-module.exports = connectDb();
+module.exports = connectDb;
