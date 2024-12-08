@@ -16,6 +16,10 @@ app.use(express.json());
 app.get('/', (req, res) =>{
     res.send('Server is running ...');
 });
+//creatina route bech ntastou database connecte walle
+app.get('/test-db', (req, res)=>{
+    res.send('Database is connected')
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{
