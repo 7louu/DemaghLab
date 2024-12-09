@@ -10,6 +10,6 @@ router.get('/:id', getCourseById); // Get a single course by ID
 // Protected routes
 router.post('/', protect, admin, createCourse); // Create a new course (admin or instructor only)
 router.post('/:id/enroll', protect, enrollInCourse); // Enroll in a course
-router.post('/:id/unenroll', protect, unenrollFromCourse); // Unenroll from a course
+router.put('/:id/unenroll', protect, unenrollFromCourse); // Unenroll from a course
 
 module.exports = router;

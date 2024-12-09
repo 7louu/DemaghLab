@@ -4,6 +4,8 @@ const express = require('express');
 const connectDb = require('./config/db');
 //importina userRoutes
 const userRoutes = require('./routes/userRoutes');
+//importing courseRoutes
+const courseRoutes = require('./routes/courseRoutes');
 //creatina server express
 const app = express();
 //connectina aala database doub ma yet7all serveur
@@ -22,8 +24,11 @@ app.get('/', (req, res) =>{
 app.get('/test-db', (req, res)=>{
     res.send('Database is connected')
 });
-//creatina routes mta3 user
+
+//ajoutina routes mta3 user lel server
 app.use('/api/users', userRoutes);
+//ajoutina routes mta3 courses lel server
+app.use('/api/courses', courseRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{
