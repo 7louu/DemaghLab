@@ -25,7 +25,7 @@ const getCourseById = async (req, res) => {
 };
 
 //creati course
-const createCourse = async (req, res) => {
+const createCourse = async (req, res, next) => {
     try {
         const {title, description, instructor} = req.body;
         
