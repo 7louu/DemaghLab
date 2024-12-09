@@ -38,4 +38,22 @@ const admin = (req, res, next) => {
     }
 };
 
-module.exports = { protect, admin };
+// Middleware to check if the user is an instructor
+const instructor = (req, res, next) => {
+    if (req.user && req.user.role === 'instructor') {
+        next();  // Continue to the next middleware or route handler
+    } else {
+        res.status(403).json({ message: 'Not authorized as an instructor' });
+    }
+};
+
+// Middleware to check if the user is a regular user
+const regularUser = (req, res, next) => {
+    if (req.user && req.user.role === 'user') {
+        next();  // Continue to the next middleware or route handler
+    } else {
+        res.status(403).json({ message: 'Not authorized as a regular user' });
+    }
+};
+
+module.exports = { protect, admin, instructor, regularUser };
