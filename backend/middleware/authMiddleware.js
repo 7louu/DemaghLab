@@ -49,7 +49,7 @@ const instructor = (req, res, next) => {
 
 // Middleware to check if the user is a regular user
 const regularUser = (req, res, next) => {
-    if (req.user && req.user.role === 'user') {
+    if (req.user && req.user.role === 'regular') {
         next();  // Continue to the next middleware or route handler
     } else {
         res.status(403).json({ message: 'Not authorized as a regular user' });

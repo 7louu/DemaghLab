@@ -14,7 +14,7 @@ const getCourses = async (req, res) => {
 //get course specifique bel id mte3ou 
 const getCourseById = async (req, res) => {
     try {
-        const course = await Course.findById();
+        const course = await Course.findById(req.params.id);
         if (!course){
             return res.status(404).json({message: 'Course not found!'});
         }
@@ -39,7 +39,7 @@ const createCourse = async (req, res, next) => {
             instructor : req.user.id,
         });
 
-        const createdCourse = await Course.save();
+        const createdCourse = await course.save();
         res.status(201).json(createdCourse);
     } catch (error) {
         res.status(500).json({message: 'Server Error'});
@@ -53,12 +53,12 @@ const enrollInCourse = async (req, res) => {
         const userId = req.user.id;
 
         // Check if already enrolled
-        const alreadyEnrolled = await Enrollment.findOne({ user: userId, course: courseId });
+        const alreadyEnrolled = await Enrollement.findOne({ user: userId, course: courseId });
         if (alreadyEnrolled) {
             return res.status(400).json({ message: 'Already enrolled in this course' });
         }
 
-        const enrollment = new Enrollment({
+        const enrollment = new Enrollement({
             user: userId,
             course: courseId,
         });
@@ -76,7 +76,7 @@ const unenrollFromCourse = async (req, res) => {
         const { id: courseId } = req.params;
         const userId = req.user.id;
 
-        const enrollment = await Enrollment.findOneAndDelete({ user: userId, course: courseId });
+        const enrollment = await Enrollement.findOneAndDelete({ user: userId, course: courseId });
         if (!enrollment) {
             return res.status(404).json({ message: 'Not enrolled in this course' });
         }
