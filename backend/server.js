@@ -8,6 +8,8 @@ const userRoutes = require('./routes/userRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 //importina enrollementRoutes
 const enrollementRoutes = require('./routes/enrollementRoutes');
+//importina lessonRoutes
+const lessonRoutes = require('./routes/lessonRoutes');
 //creatina server express
 const app = express();
 //connectina aala database doub ma yet7all serveur
@@ -33,6 +35,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/courses', courseRoutes);
 //ajoutina routes mta3 enrollement lel server
 app.use('/api/enrollement', enrollementRoutes);
+//ajoutina routes mta3 lesson lel server
+app.use('/api/lesson', lessonRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>{
