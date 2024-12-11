@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getCourses, getCourseById, createCourse, enrollInCourse, unenrollFromCourse } = require('../controllers/courseController');
-const protect = require('../middleware/authMiddleware');
+const { getCourses, getCourseById, createCourse} = require('../controllers/courseController');
+const {protect} = require('../middleware/authMiddleware');
 const roleMiddleware = require('../middleware/roleMiddleware');
+
 // Public routes
 router.get('/', getCourses); // Get all courses
 router.get('/:id', getCourseById); // Get a single course by ID
