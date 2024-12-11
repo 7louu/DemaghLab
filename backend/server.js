@@ -12,6 +12,7 @@ const enrollementRoutes = require('./routes/enrollementRoutes');
 const lessonRoutes = require('./routes/lessonRoutes');
 //creatina server express
 const app = express();
+const cors = require("cors")
 //connectina aala database doub ma yet7all serveur
 connectDb();
 
@@ -19,6 +20,24 @@ connectDb();
 //express maynjmch yparsi JSON data into Js scriptable objects 
 //fi wost express fama built-in middleware yaaml l faza hedhy 
 app.use(express.json());
+// Enable CORS with custom configuration
+const corsOptions = {
+    origin: 'http://localhost:3000', // Allow requests from your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+};
+
+// Enable CORS for all routes
+app.use(cors(corsOptions));
+
+// Optional: Set headers manually for all routes
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // Adjust for your frontend URL
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Adjust as needed
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Adjust as needed
+    res.setHeader('Referrer-Policy', 'no-referrer-when-downgrade');
+    next();
+});
 
 //creatina route bech nchekou ken serveur yemchi
 app.get('/', (req, res) =>{

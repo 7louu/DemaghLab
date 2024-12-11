@@ -17,6 +17,14 @@ router.post('/login', loginUser);
 
 router.get('/profile', protect, getUserProfile);
 
+router.get('/check-auth', protect, (req,res)=>{
+    if (req.user) {
+        res.json({ok : true , user : req.user})
+    } else {
+        res.json({ok : false})
+    }
+});
+
 router.get('/debug/id/:id', async (req, res) => {
     const user = await User.findById(req.params.id);
     if (user) {

@@ -4,13 +4,15 @@ const User = require('../models/user');
 // Middleware to check if the user is authenticated
 const protect = async (req, res, next) => {
     let token;
-
+    
+    
     // Check if there's a Bearer token in the Authorization header
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
             // Get the token from the Authorization header
             token = req.headers.authorization.split(' ')[1];
 
+            
             // Verify the token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
